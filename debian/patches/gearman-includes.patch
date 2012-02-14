@@ -1,0 +1,68 @@
+Description: Fix include path for current gearmand version.
+Author: Martin Pitt <martin.pitt@ubuntu.com>
+
+Index: drizzle-2011.03.13/m4/pandora_have_libgearman.m4
+===================================================================
+--- drizzle-2011.03.13.orig/m4/pandora_have_libgearman.m4	2011-03-15 20:06:44.000000000 +0100
++++ drizzle-2011.03.13/m4/pandora_have_libgearman.m4	2012-02-14 08:37:12.455968695 +0100
+@@ -18,7 +18,7 @@
+ 
+   AS_IF([test "x$ac_enable_libgearman" = "xyes"],[
+     AC_LIB_HAVE_LINKFLAGS(gearman,,[
+-      #include <libgearman/gearman.h>
++      #include <libgearman-1.0/gearman.h>
+     ],[
+       gearman_client_st gearman_client;
+       gearman_client_context(&gearman_client);
+Index: drizzle-2011.03.13/plugin/gearman_udf/function_map.cc
+===================================================================
+--- drizzle-2011.03.13.orig/plugin/gearman_udf/function_map.cc	2011-03-15 20:06:44.000000000 +0100
++++ drizzle-2011.03.13/plugin/gearman_udf/function_map.cc	2012-02-14 08:34:57.103962146 +0100
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
+ 
+ #include "function_map.h"
+-#include <libgearman/client.h>
++#include <libgearman-1.0/client.h>
+ #include <string.h>
+ #include <stdlib.h>
+ 
+Index: drizzle-2011.03.13/plugin/gearman_udf/function_map.h
+===================================================================
+--- drizzle-2011.03.13.orig/plugin/gearman_udf/function_map.h	2011-03-15 20:06:44.000000000 +0100
++++ drizzle-2011.03.13/plugin/gearman_udf/function_map.h	2012-02-14 08:35:04.151962491 +0100
+@@ -17,7 +17,7 @@
+ 
+ #include <map>
+ #include <string>
+-#include <libgearman/gearman.h>
++#include <libgearman-1.0/gearman.h>
+ #include <pthread.h>
+ 
+ class GearmanFunctionMap
+Index: drizzle-2011.03.13/plugin/gearman_udf/gman_do.h
+===================================================================
+--- drizzle-2011.03.13.orig/plugin/gearman_udf/gman_do.h	2011-03-15 20:06:44.000000000 +0100
++++ drizzle-2011.03.13/plugin/gearman_udf/gman_do.h	2012-02-14 08:35:36.559964052 +0100
+@@ -18,7 +18,7 @@
+ #include <drizzled/item/func.h>
+ #include <drizzled/function/str/strfunc.h>
+ 
+-#include <libgearman/gearman.h>
++#include <libgearman-1.0/gearman.h>
+ 
+ class Item_func_gman_do :public drizzled::Item_str_func
+ {
+Index: drizzle-2011.03.13/plugin/logging_gearman/logging_gearman.cc
+===================================================================
+--- drizzle-2011.03.13.orig/plugin/logging_gearman/logging_gearman.cc	2011-03-15 20:06:44.000000000 +0100
++++ drizzle-2011.03.13/plugin/logging_gearman/logging_gearman.cc	2012-02-14 08:36:49.391967583 +0100
+@@ -29,7 +29,7 @@
+ #include <boost/date_time.hpp>
+ #include <boost/program_options.hpp>
+ #include <drizzled/module/option_map.h>
+-#include <libgearman/gearman.h>
++#include <libgearman-1.0/gearman.h>
+ #include <limits.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>

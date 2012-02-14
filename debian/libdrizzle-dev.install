@@ -1,0 +1,3 @@
+usr/include/libdrizzle-1.0/libdrizzle/*
+usr/lib/libdrizzle.so
+usr/lib/pkgconfig/libdrizzle-1.0.pc
